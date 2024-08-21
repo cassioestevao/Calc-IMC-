@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 300;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+
+            & #formulario {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" id="ImcForm" name="ImcForm">
+
+        <label for="name">Digite sua altura :</label>
+        <input type="text" placeholder="EX: 1.67" name="altura">
+        <br>
+
+        <label for="name">Digite seu peso :</label>
+        <input type="text" placeholder="Digite o valor em Kg." name="peso">
+        <br>
+
+        <input type="submit" value="Calcular" onclick="CalcularImc">
+    </form>
+
+    <script type="text/javascript">
+
+        // Função que é chamada quando o botão "Calcular" é clicado
+        function CalcularImc(event) {
+            // Previne o envio do formulário para evitar o recarregamento da página
+            event.preventDefault();
+
+            // Obtém os valores de altura e peso dos campos do formulário
+            let altura = parseFloat(document.ImcForm.altura.value); 
+            // Aqui basicamente estou assumindo com o let a variavel chamada peso, e tambem assumindo
+            // que o valor digitado no campo peso é um número, e que ele está em kg
+            let peso = parseFloat(document.ImcForm.peso.value);
+            // Logo em seguida faço a navegação ate o valor. Document (html), ImcForm = name, peso e valor do peso.
+            // Verifica se os valores são válidos
+            if (!altura || !peso) {
+                alert("Por favor, insira valores válidos para altura e peso.");
+                
+                return;
+            }
+
+            // Calcula o IMC
+            let imc = peso / (altura * altura);
+
+            // Exibe o resultado do IMC
+            alert("Seu IMC é: " + imc.toFixed(2));
+        }
+
+        // Adiciona a função CalcularImc ao evento de submit do formulário
+        document.getElementById("ImcForm").onsubmit = CalcularImc;
+
+
+    </script>
+</body>
+
+</html>
